@@ -22,7 +22,7 @@ An Angular frontend application that displays the newest stories from Hacker New
 
 1. Clone the repository:
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/HujiLLC/hackernews-frontend.git
 cd HackerNews-Frontend
 ```
 
@@ -116,14 +116,7 @@ The search functionality includes a 300ms debounce to prevent excessive API call
 
 ## Deployment to Azure
 
-1. Build the production version:
-```bash
-npm run build:prod
-```
-
-2. Deploy the `dist/hackernews-frontend` folder to Azure Static Web Apps or Azure App Service
-
-3. Configure the API URL in the production environment to point to your deployed backend
+This project is connected to Azure, so if you push or merge a pull request to master branch, it'll be automatically deployed.
 
 ## Browser Support
 
