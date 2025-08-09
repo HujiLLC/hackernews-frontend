@@ -54,13 +54,13 @@ import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.comp
         <div class="stories-header" *ngIf="paginatedStories">
           <h2>
             {{ searchQuery ? 'Search Results' : 'Latest Stories' }}
-            <span class="story-count">({{ paginatedStories.totalCount }} stories)</span>
+            <span class="story-count">({{ paginatedStories?.totalCount }} stories)</span>
           </h2>
         </div>
 
         <div class="stories-list" *ngIf="paginatedStories?.stories?.length; else noStories">
           <app-story-item 
-            *ngFor="let story of paginatedStories.stories; trackBy: trackByStoryId" 
+            *ngFor="let story of paginatedStories?.stories; trackBy: trackByStoryId" 
             [story]="story">
           </app-story-item>
         </div>
@@ -72,11 +72,11 @@ import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.comp
         </ng-template>
 
         <app-pagination 
-          *ngIf="paginatedStories && paginatedStories.totalPages > 1"
+          *ngIf="paginatedStories && (paginatedStories?.totalPages ?? 0) > 1"
           [currentPage]="currentPage"
-          [totalPages]="paginatedStories.totalPages"
+          [totalPages]="paginatedStories?.totalPages ?? 1"
           [pageSize]="pageSize"
-          [totalItems]="paginatedStories.totalCount"
+          [totalItems]="paginatedStories?.totalCount ?? 0"
           (pageChange)="onPageChange($event)"
           (pageSizeChange)="onPageSizeChange($event)">
         </app-pagination>
@@ -169,7 +169,7 @@ export class StoryListComponent implements OnInit, OnDestroy {
 
   private loadStories(): void {
     const searchParams: SearchParams = {
-      query: this.searchQuery,
+      query: this.searchQuery || undefined,
       page: this.currentPage,
       pageSize: this.pageSize
     };
@@ -186,6 +186,7 @@ export class StoryListComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         console.error('Error loading stories:', error);
+        this.paginatedStories = null;
       }
     });
   }

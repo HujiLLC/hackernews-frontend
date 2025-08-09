@@ -84,7 +84,7 @@
 }
 
 .retry-button {
-  @extend .btn, .btn-secondary;
+  @extend .btn, .btn-secondary !optional;
   margin-left: 16px;
 }
 

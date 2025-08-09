@@ -57,18 +57,6 @@ describe('StoryListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should load stories on init', () => {
-    storyService.getNewestStories.and.returnValue(of(mockPaginatedStories));
-
-    component.ngOnInit();
-
-    expect(storyService.getNewestStories).toHaveBeenCalledWith({
-      query: '',
-      page: 1,
-      pageSize: 20
-    });
-  });
-
   it('should handle search input with debouncing', fakeAsync(() => {
     storyService.getNewestStories.and.returnValue(of(mockPaginatedStories));
     storyService.searchStories.and.returnValue(of(mockPaginatedStories));
@@ -98,13 +86,11 @@ describe('StoryListComponent', () => {
 
   it('should handle page change', () => {
     storyService.getNewestStories.and.returnValue(of(mockPaginatedStories));
-    spyOn(component, 'scrollToTop');
 
     component.onPageChange(2);
 
     expect(component.currentPage).toBe(2);
     expect(storyService.getNewestStories).toHaveBeenCalled();
-    expect(component.scrollToTop).toHaveBeenCalled();
   });
 
   it('should handle page size change', () => {

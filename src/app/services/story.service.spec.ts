@@ -100,7 +100,7 @@ describe('StoryService', () => {
 
     it('should handle errors', () => {
       const searchParams: SearchParams = { page: 1, pageSize: 20 };
-      let errorMessage: string | null = null;
+      let errorMessage: string | null = '';
 
       service.error$.subscribe(error => {
         errorMessage = error;
@@ -115,7 +115,7 @@ describe('StoryService', () => {
       const req = httpMock.expectOne(`${environment.apiUrl}/stories/newest?page=1&pageSize=20`);
       req.error(new ErrorEvent('Network error'));
 
-      expect(errorMessage).toBe('Failed to load stories. Please try again.');
+      expect(errorMessage).toEqual('Failed to load stories. Please try again.');
     });
   });
 

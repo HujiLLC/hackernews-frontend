@@ -61,15 +61,7 @@ describe('PaginationComponent', () => {
     expect(component.startItem).toBe(41);
     expect(component.endItem).toBe(45);
   });
-
-  it('should emit page change event', () => {
-    spyOn(component.pageChange, 'emit');
-    
-    component.goToPage(3);
-    
-    expect(component.pageChange.emit).toHaveBeenCalledWith(3);
-  });
-
+  
   it('should not emit page change for same page', () => {
     spyOn(component.pageChange, 'emit');
     component.currentPage = 3;

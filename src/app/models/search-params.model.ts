@@ -1,5 +1,6 @@
 export interface SearchParams {
   query?: string;
+  search?: string;
   page: number;
   pageSize: number;
 }
