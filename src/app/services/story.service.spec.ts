@@ -84,7 +84,7 @@ describe('StoryService', () => {
 
     it('should handle loading state', () => {
       const searchParams: SearchParams = { page: 1, pageSize: 20 };
-      let loadingStates: boolean[] = [];
+      const loadingStates: boolean[] = [];
 
       service.loading$.subscribe(loading => {
         loadingStates.push(loading);

@@ -29,7 +29,7 @@ describe('PaginationComponent', () => {
   it('should calculate visible pages correctly', () => {
     component.currentPage = 3;
     component.totalPages = 10;
-    component.ngOnChanges({});
+    component.ngOnChanges();
 
     expect(component.visiblePages).toEqual([1, 2, 3, 4, 5]);
   });
@@ -37,7 +37,7 @@ describe('PaginationComponent', () => {
   it('should calculate visible pages when near the end', () => {
     component.currentPage = 9;
     component.totalPages = 10;
-    component.ngOnChanges({});
+    component.ngOnChanges();
 
     expect(component.visiblePages).toEqual([6, 7, 8, 9, 10]);
   });
@@ -46,7 +46,7 @@ describe('PaginationComponent', () => {
     component.currentPage = 2;
     component.pageSize = 20;
     component.totalItems = 45;
-    component.ngOnChanges({});
+    component.ngOnChanges();
 
     expect(component.startItem).toBe(21);
     expect(component.endItem).toBe(40);
@@ -56,12 +56,12 @@ describe('PaginationComponent', () => {
     component.currentPage = 3;
     component.pageSize = 20;
     component.totalItems = 45;
-    component.ngOnChanges({});
+    component.ngOnChanges();
 
     expect(component.startItem).toBe(41);
     expect(component.endItem).toBe(45);
   });
-  
+
   it('should not emit page change for same page', () => {
     spyOn(component.pageChange, 'emit');
     component.currentPage = 3;
@@ -101,7 +101,7 @@ describe('PaginationComponent', () => {
   it('should handle single page scenario', () => {
     component.currentPage = 1;
     component.totalPages = 1;
-    component.ngOnChanges({});
+    component.ngOnChanges();
 
     expect(component.visiblePages).toEqual([1]);
   });
@@ -110,7 +110,7 @@ describe('PaginationComponent', () => {
     component.currentPage = 1;
     component.pageSize = 20;
     component.totalItems = 0;
-    component.ngOnChanges({});
+    component.ngOnChanges();
 
     expect(component.startItem).toBe(1);
     expect(component.endItem).toBe(0);

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -94,7 +94,7 @@ export class PaginationComponent implements OnChanges {
   startItem = 0;
   endItem = 0;
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     this.calculateVisiblePages();
     this.calculateItemRange();
   }
@@ -117,7 +117,7 @@ export class PaginationComponent implements OnChanges {
     const pages: number[] = [];
     
     let startPage = Math.max(1, this.currentPage - Math.floor(maxVisiblePages / 2));
-    let endPage = Math.min(this.totalPages, startPage + maxVisiblePages - 1);
+    const endPage = Math.min(this.totalPages, startPage + maxVisiblePages - 1);
     
     // Adjust start page if we're near the end
     if (endPage - startPage + 1 < maxVisiblePages) {

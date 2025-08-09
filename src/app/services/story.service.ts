@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, BehaviorSubject, catchError, map, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { Story, PaginatedStories } from '../models/story.model';
+import { PaginatedStories } from '../models/story.model';
 import { SearchParams, ApiResponse } from '../models/search-params.model';
 
 @Injectable({

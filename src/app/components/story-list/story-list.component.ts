@@ -102,8 +102,8 @@ export class StoryListComponent implements OnInit, OnDestroy {
       debounceTime(300),
       distinctUntilChanged(),
       takeUntil(this.destroy$)
-    ).subscribe(query => {
-      this.performSearch(query);
+    ).subscribe(() => {
+      this.performSearch();
     });
   }
 
@@ -135,7 +135,7 @@ export class StoryListComponent implements OnInit, OnDestroy {
     this.searchSubject.next(this.searchQuery);
   }
 
-  private performSearch(query: string): void {
+  private performSearch(): void {
     this.currentPage = 1;
     this.loadStories();
   }
